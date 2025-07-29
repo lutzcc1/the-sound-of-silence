@@ -1,1 +1,1 @@
-pydub # requires ffmpeg
+pydub==0.25.1 # requires ffmpeg
