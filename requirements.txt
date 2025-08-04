@@ -1,2 +1,4 @@
-pydub==0.25.1 # requires ffmpeg
 elevenlabs==2.8.1
+fastapi==0.116.1
+pydub==0.25.1 # requires ffmpeg
+uvicorn==0.35.0
