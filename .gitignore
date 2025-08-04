@@ -1,4 +1,5 @@
 the-sound-of-silence/
+__pycache__
 
 # file used for testing
 output.ogg
