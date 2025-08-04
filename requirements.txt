@@ -1,2 +1,2 @@
 pydub==0.25.1 # requires ffmpeg
-elevenlabs=2.8.1
+elevenlabs==2.8.1
