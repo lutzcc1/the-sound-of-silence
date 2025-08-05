@@ -3,3 +3,5 @@ __pycache__
 
 # file used for testing
 output.ogg
+
+.env

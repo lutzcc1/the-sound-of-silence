@@ -1,13 +1,28 @@
-from fastapi import FastAPI
-from fastapi.responses import StreamingResponse
-from add_pauses import parse_script, generate_audio_file_from_chunks
 import io
+import os
+
+from add_pauses import parse_script, generate_audio_file_from_chunks
+from dotenv import load_dotenv
+from fastapi import FastAPI, Header, HTTPException
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from typing import Optional
+
+load_dotenv()
+
+API_KEY = os.environ["API_KEY"]
 
 app = FastAPI(title="The-Sound-of-Silence")
 
-@app.get("/generate")
-def generate_audio():
-  chunks = parse_script("Inhala profundo. [PAUSE:4s] Exhala lento… [PAUSE:6s] Buen trabajo.")
+class Script(BaseModel):
+  script: str
+
+@app.post("/generate")
+def generate_audio(request: Script, x_api_key: Optional[str] = Header(None)):
+  if x_api_key != API_KEY:
+    raise HTTPException(status_code=401, detail="Unauthorized")
+
+  chunks = parse_script(request.script)
   audio = generate_audio_file_from_chunks(chunks)
 
   buf = io.BytesIO()
