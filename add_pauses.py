@@ -67,26 +67,3 @@ def generate_audio_file_from_chunks(chunks):
     combined_audio += audio_segment + pause_segment
 
   return combined_audio
-
-# ── Quick sanity checks ────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    s1 = "Inhala profundo. [PAUSE:4s] Exhala lento… [PAUSE:6s] Buen trabajo."
-    print(parse_script(s1))
-    # [('Inhala profundo.', 4), ('Exhala lento…', 6), ('Buen trabajo.', 0)]
-
-    s2 = "Relájate. [PAUSE:10s][PAUSE:2s] Suelta."  # consecutive pauses
-    try:
-        parse_script(s2)
-    except ValueError as e:
-        print("Caught:", e)
-
-    s3 = "Final tag issue. [PAUSE:3s]"  # trailing pause
-    try:
-        parse_script(s3)
-    except ValueError as e:
-        print("Caught:", e)
-
-    test_script = "Inhala profundo. [PAUSE:4s] Exhala lento… [PAUSE:6s] Buen trabajo."
-    chunks = parse_script(test_script)
-    audio = generate_audio_file_from_chunks(chunks)
-    audio.export('combined.mp3', format="mp3")
