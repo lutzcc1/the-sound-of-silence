@@ -1,9 +1,10 @@
-import re
-from pydub import AudioSegment
-from elevenlabs.client import ElevenLabs
 import io
-from dotenv import load_dotenv
 import os
+import re
+
+from dotenv import load_dotenv
+from elevenlabs.client import ElevenLabs
+from pydub import AudioSegment
 
 load_dotenv()
 
