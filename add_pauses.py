@@ -34,7 +34,7 @@ def fetch_tts(text):
 
   return client.text_to_speech.convert(
       voice_id="JBFqnCBsd6RMkjVDRZzb",
-      output_format="mp3_44100_128",
+      output_format="opus_48000_32",
       text=text,
       model_id="eleven_multilingual_v2",
   )
@@ -48,7 +48,7 @@ def generate_audio_segment(text):
 
   # according to AudioSegment docs it is possible to build a segment from raw audio data
   # but I wasn't able to make it work, hence the IO operation
-  return AudioSegment.from_file(io.BytesIO(audio_bytes), format="mp3")
+  return AudioSegment.from_file(io.BytesIO(audio_bytes), format="ogg")
 
 # Example of 'chunks': [('Inhala profundo.', 4), ('Exhala lento…', 6), ('Buen trabajo.', 0)]
 def generate_audio_file_from_chunks(chunks):
