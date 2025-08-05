@@ -10,7 +10,7 @@ from typing import Optional
 
 load_dotenv()
 
-API_KEY = os.environ["API_KEY"]
+APP_API_KEY = os.environ["APP_API_KEY"]
 
 app = FastAPI(title="The-Sound-of-Silence")
 
@@ -19,7 +19,7 @@ class Script(BaseModel):
 
 @app.post("/generate")
 def generate_audio(request: Script, x_api_key: Optional[str] = Header(None)):
-  if x_api_key != API_KEY:
+  if x_api_key != APP_API_KEY:
     raise HTTPException(status_code=401, detail="Unauthorized")
 
   chunks = parse_script(request.script)
