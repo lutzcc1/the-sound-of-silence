@@ -4,6 +4,7 @@ import re
 
 from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
+from elevenlabs import VoiceSettings
 from pydub import AudioSegment
 
 load_dotenv()
@@ -12,6 +13,8 @@ ELEVENLABS_API_KEY = os.environ["ELEVENLABS_API_KEY"]
 
 PAUSE_SECONDS_RE = re.compile(r"\[PAUSE:(\d+)s\]", flags=re.IGNORECASE)
 PAUSE_TAGS_RE = re.compile(r"\[PAUSE:\d+s\]", flags=re.IGNORECASE)
+
+VOICE_ID = os.environ["VOICE_ID"]
 
 def parse_script(script):
     """
@@ -40,10 +43,11 @@ def fetch_tts(text):
   client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
   return client.text_to_speech.convert(
-      voice_id="JBFqnCBsd6RMkjVDRZzb",
+      voice_id=VOICE_ID,
       output_format="opus_48000_32",
       text=text,
       model_id="eleven_multilingual_v2",
+      voice_settings=VoiceSettings(speed=0.85)
   )
 
 def generate_audio_segment(text):
