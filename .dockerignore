@@ -1,0 +1,19 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+the-sound-of-silence/
+.env
+
+# Git & logs
+.git/
+.gitignore
+*.log
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# System files
+.DS_Store
