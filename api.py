@@ -4,7 +4,7 @@ import os
 from add_pauses import parse_script, generate_audio_file_from_chunks
 from dotenv import load_dotenv
 from fastapi import FastAPI, Header, HTTPException
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, JSONResponse
 from pydantic import BaseModel
 from typing import Optional
 
@@ -35,3 +35,7 @@ def generate_audio(request: Script, x_api_key: Optional[str] = Header(None)):
   }
 
   return StreamingResponse(buf, media_type="audio/opus", headers=headers)
+
+@app.get("/health", tags=["health"])
+def health_check():
+  return JSONResponse(status_code=200, content={"status": "ok"})
