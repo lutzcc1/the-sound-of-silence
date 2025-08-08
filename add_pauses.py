@@ -47,7 +47,7 @@ def fetch_tts(text):
       output_format="opus_48000_32",
       text=text,
       model_id="eleven_multilingual_v2",
-      voice_settings=VoiceSettings(speed=0.75, stability=0.70, similarity_boost=0.40, use_speaker_boost=True)
+      voice_settings=VoiceSettings(speed=0.90, stability=0.70, similarity_boost=0.40, use_speaker_boost=True)
   )
 
 def generate_audio_segment(text):
