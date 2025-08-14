@@ -10,11 +10,11 @@ from pydub import AudioSegment
 load_dotenv()
 
 ELEVENLABS_API_KEY = os.environ["ELEVENLABS_API_KEY"]
-
 PAUSE_SECONDS_RE = re.compile(r"\[PAUSE:(\d+)s\]", flags=re.IGNORECASE)
 PAUSE_TAGS_RE = re.compile(r"\[PAUSE:\d+s\]", flags=re.IGNORECASE)
-
 VOICE_ID = os.environ["VOICE_ID"]
+
+ElevenLabsClient = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
 def parse_script(script):
     """
@@ -23,7 +23,7 @@ def parse_script(script):
     """
     # Grab all pauses as integers.
     pauses = [int(sec) for sec in PAUSE_SECONDS_RE.findall(script)]
-    # Split into chunks & srip whitespace.
+    # Split into chunks & strip whitespace.
     chunks = [c.strip() for c in PAUSE_TAGS_RE.split(script) if c.strip()]
 
     # We expect exactly one more chunk than pauses. Final chunk has no pause
@@ -40,9 +40,7 @@ def parse_script(script):
     return result
 
 def fetch_tts(text):
-  client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
-
-  return client.text_to_speech.convert(
+  return ElevenLabsClient.text_to_speech.convert(
       voice_id=VOICE_ID,
       output_format="opus_48000_32",
       text=text,
