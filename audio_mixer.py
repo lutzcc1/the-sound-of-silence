@@ -89,17 +89,3 @@ def add_background_music(
     # Export
     mixed.export(out_path, format="wav")
     return out_path
-
-# -----------------------
-# Example call
-# -----------------------
-if __name__ == "__main__":
-    out = add_background_music(
-        narration_path="meditation.wav",
-        music_path="music.wav",
-        fade_ms=3000,
-        bed_gain_db=-20.0,
-        target_peak_dbfs=-0.5,
-        out_path="mixed_phase7.wav",
-    )
-    print("Wrote:", out)
