@@ -5,3 +5,4 @@ __pycache__
 output.ogg
 
 .env
+.DS_Store
