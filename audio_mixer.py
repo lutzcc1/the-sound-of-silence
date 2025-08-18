@@ -5,7 +5,7 @@ from functools import lru_cache
 # Tunables (safe defaults)
 # -----------------------
 FADE_MS = 3000          # loop seam fade length
-BED_GAIN_DB = -20.0     # music bed level relative to original file
+BED_GAIN_DB = -10.0     # music bed level relative to original file
 TARGET_PEAK_DBFS = -0.5 # final safety headroom
 TINY_TAIL_FADE_MS = 80  # prevent end clicks on some players
 
