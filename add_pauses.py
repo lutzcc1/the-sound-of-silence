@@ -13,6 +13,7 @@ ELEVENLABS_API_KEY = os.environ["ELEVENLABS_API_KEY"]
 PAUSE_SECONDS_RE = re.compile(r"\[PAUSE:(\d+)s\]", flags=re.IGNORECASE)
 PAUSE_TAGS_RE = re.compile(r"\[PAUSE:\d+s\]", flags=re.IGNORECASE)
 VOICE_ID = os.environ["VOICE_ID"]
+MODEL_ID = os.environ["MODEL_ID"]
 
 ElevenLabsClient = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
@@ -44,7 +45,7 @@ def fetch_tts(text):
       voice_id=VOICE_ID,
       output_format="opus_48000_32",
       text=text,
-      model_id="eleven_multilingual_v2",
+      model_id=MODEL_ID,
       voice_settings=VoiceSettings(speed=0.90, stability=0.70, similarity_boost=0.40, use_speaker_boost=True)
   )
 
